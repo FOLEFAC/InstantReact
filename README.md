@@ -101,19 +101,19 @@ Deep learning algorithms are best suited for solving such problems, since they c
 <p> The words which form the captions are passed into the model in their <strong> one - hot </strong> notation. So if we have a vocabulary of 2850 words (although not very practical), each words can be transformed into a 1- D array with all zeros and having 1 only at one position which is unique to that number. Some examples were taken in the figure above.
  </p>
  
- <p><code>
+ <p>
+ 
+ <code>
  class Encoder_LSTM(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers):
         super(Encoder_LSTM, self).__init__()
         self.hidden_size = hidden_size
         self.num_layers = num_layers
         self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
-
     def forward(self, x):
-        out, (h_n, c_n) = self.lstm(x)  # out: tensor of shape (batch_size, seq_length, hidden_size)
-                                    
+        out, (h_n, c_n) = self.lstm(x)  # out: tensor of shape (batch_size, seq_length, hidden_size)   
         return h_n, c_n
-        </code>
+ </code>
  </p>
  
  
