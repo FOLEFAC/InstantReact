@@ -1,12 +1,11 @@
 # InstantReact
 This repo contains code for the <b>InstantReact</b> project. This project helps people and organizations with <b>CCTV cameras</b> take quick decisions automatically depending on what the Camera sees.
-In this project, we shall use <b>Facebook's Pytorch, WIT.ai, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, do a demo app and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results
+In this project, we shall use <b>Facebook's Pytorch, WIT.ai, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, do a demo app and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
 
-<p>This is the third in <a href="https://github.com/sgrvinod/Deep-Tutorials-for-PyTorch">a series of tutorials</a> I'm writing about <em>implementing</em> cool models on your own with the amazing PyTorch library.</p>
-<p>Basic knowledge of PyTorch, convolutional neural networks is assumed.</p>
+<p>Basic knowledge of PyTorch, convolutional Neural Networks, Recurrent Neural Networks and Long Short Term Memories is assumed.</p>
 <p>If you're new to PyTorch, first read <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" rel="nofollow">Deep Learning with PyTorch: A 60 Minute Blitz</a> and <a href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html" rel="nofollow">Learning PyTorch with Examples</a>.</p>
 <p>Questions, suggestions, or corrections can be posted as issues.</p>
-<p>I'm using <code>PyTorch 0.4</code> in <code>Python 3.6</code>.</p>
+<p>I'm using <code>PyTorch 1.6.0</code> in <code>Python 3.7.4</code>.</p>
 <hr>
 <p><strong>27 Jan 2020</strong>: Working code for two new tutorials has been added — <a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Super-Resolution">Super-Resolution</a> and <a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Machine-Translation">Machine Translation</a></p>
 <hr>
