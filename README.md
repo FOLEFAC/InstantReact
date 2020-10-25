@@ -10,10 +10,6 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusau
 <h1><a id="user-content-contents" class="anchor" aria-hidden="true" href="#contents"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h1>
 <p><a href="https://github.com/FOLEFAC/InstantReact#objective"><em><strong>Objective</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong>Overview</strong></em></a>
-<ul>
-<li><p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong>General Overview</strong></em></a>
-</li>
-</ul>
 
 <ul>
 <li><p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong>Video Captioning</strong></em></a>
@@ -47,7 +43,7 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusau
 <h1><a id="user-content-objective" class="anchor" aria-hidden="true" href="#objective"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Objective</h1>
 <p><strong>Build a system, which can extract useful information from a video like actions and sounds.</strong> <br> This will for example permit security agents be more efficient as the computer can be trained to automatically see what is contained in the video, and alert them so that they can take quick and instant measures. 
  <br>Also we shall see how to build a package and quickly document it so that other developers can make use of it with ease. Then finally we shall see how to deploy these models in production using ONNX and how to do a demo app in ReactJs.
- <br>  After going through this tutorial, you shall learn how to use the InstantReact Package and also how to create and document yours :)</p>
+ <br>  Hopefully after going through this tutorial, you shall learn how to use the InstantReact Package and also how to create and document yours :)</p>
 <p align="center">
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif" style="max-width:100%;"></a>
 </p>
@@ -55,17 +51,12 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusau
 
 <h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#overview"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Overview</h1>
 
-<p>In this section, we will present an overview of this model. If you're already familiar with it, you can skip straight to the <a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#implementation">Implementation</a> section or the commented code.</p>
-<p>As we proceed, you will notice that there's a fair bit of engineering that's resulted in the SSD's very specific structure and formulation. Don't worry if some aspects of it seem contrived or unspontaneous at first. Remember, it's built upon <em>years</em> of (often empirical) research in this field.</p>
-
-
-<h3><a id="user-content-some-definitions" class="anchor" aria-hidden="true" href="#some-definitions"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Some definitions</h3>
 
 <p align="center">
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/generaloverview.png"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/generaloverview.png" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/generaloverview.jpg"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/generaloverview.jpg" style="max-width:100%;"></a>
 </p>
 
-<p> From the figure above, we see that a video file can be broken down into several frames. A frame can be considered as a single image or a single capture from the video at a given point in time. Video files can be broken down into the frames (images) and sound.A box is a box. A <em>bounding</em> box is a box that wraps around an object i.e. represents its bounds.</p>
+<p>A box is a box. A <em>bounding</em> box is a box that wraps around an object i.e. represents its bounds.</p>
 <p>In this tutorial, we will encounter both types – just boxes and bounding boxes. But all boxes are represented on images and we need to be able to measure their positions, shapes, sizes, and other properties.</p>
 <h4><a id="user-content-boundary-coordinates" class="anchor" aria-hidden="true" href="#boundary-coordinates"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Boundary coordinates</h4>
 <p>The most obvious way to represent a box is by the pixel coordinates of the <code>x</code> and <code>y</code> lines that constitute its boundaries.</p>
