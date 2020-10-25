@@ -1,6 +1,6 @@
 # InstantReact
 This repo contains code for the <b>InstantReact</b> project. This project helps people and organizations with <b>CCTV cameras</b> take quick decisions automatically depending on what the Camera sees.
-In this project, we shall use <b>Facebook's Pytorch, WIT.ai, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, do a demo app and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
+In this project, we shall use <b>Facebook's Pytorch, WIT.ai, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, do a demo app using ONNX.js and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
 
 <p>Basic knowledge of PyTorch, convolutional Neural Networks, Recurrent Neural Networks and Long Short Term Memories is assumed.</p>
 <p>If you're new to PyTorch, first read <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" rel="nofollow">Deep Learning with PyTorch: A 60 Minute Blitz</a> and <a href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html" rel="nofollow">Learning PyTorch with Examples</a>.</p>
