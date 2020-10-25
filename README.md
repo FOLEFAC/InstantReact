@@ -25,6 +25,17 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusau
 </li>
 </ul>
 
+
+<ul>
+<li><p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong> Package Documentation </strong></em></a>
+</li>
+</ul>
+
+<ul>
+<li><p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong> Demo </strong></em></a>
+</li>
+</ul>
+
 </li>
 </ul>
 </p>
