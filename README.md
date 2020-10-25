@@ -44,7 +44,7 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 <p><strong>Build a system, which can extract useful information from a video like actions and sounds.</strong> <br> This will for example permit security agents be more efficient as the computer can be trained to automatically see what is contained in the video, and alert them so that they can take quick and instant measures. 
  <br>Also we shall see how to build a package and quickly document it so that other developers can make use of it with ease. Then finally we shall see how to deploy these models in production using ONNX and how to do a demo app in ReactJs.
  
- <br>  Hopefully after going through this tutorial, you shall learn how to use the InstantReact Package and also how to create and document yours :)</p>
+ <br>  After going through this tutorial, you shall learn how to use the InstantReact Package and also how to create and document yours :)</p>
  <p> <strong> It is worth noting that this project can be used in many other environments apart from security. Imagine a patient who is being monitored, so that in case of a fall, he/she can be rescued very quickly</strong>. So don't limit yourself feel free to use these technologies to solve real world problems you encounter</p>
 <p align="center">
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif" style="max-width:100%;"></a>
@@ -74,10 +74,19 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 </p>
 
 
-<p>The SSD is a purely convolutional neural network (CNN) that we can organize into three parts –</p>
+<p>Video captioning entails extracting visual information contained in a video and putting it out in the form of text</p>
+<p> The diagram above describes a video captioning pipeline <strong>(from extraction of frames in the video to textual description of actions in the video). </strong> </p>
+Deep learning algorithms are best suited for solving such problems, since they can help understand image data and also understand patterns existing between the different frames which are present in a video over a given period of time.
+<p> To extract the information from the frames (image data), we make use of a Convolutional neural network (CNN), while to understand different actions and generate text over time we use a Recurrent Neural Network (RNN).</p>
+<p> Infact, we are using a variant or a more sophisticated CNN, which is the <strong> VGG16</strong>, and a more sophisticated RNN, called LSTMs. These are not the most advanced models, as other advanced models and algorithms exist which can be used to better learn from a given dataset (Videos and their captions). Before explaining what is going on in the schematic above, it is important to understand our data first and know the problem we want to solve.
+</p>
+
+
+
+
 <ul>
 <li>
-<p><strong>Base convolutions</strong> derived from an existing image classification architecture that will provide lower-level feature maps.</p>
+<p> derived from an existing image classification architecture that will provide lower-level feature maps.</p>
 </li>
 <li>
 <p><strong>Auxiliary convolutions</strong> added on top of the base network that will provide higher-level feature maps.</p>
