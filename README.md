@@ -105,12 +105,19 @@ Deep learning algorithms are best suited for solving such problems, since they c
  
  <code>
     def __init__(self, input_size, hidden_size, num_layers):
+ 
         super(Encoder_LSTM, self).__init__()
+        
         self.hidden_size = hidden_size
+        
         self.num_layers = num_layers
+        
         self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
+        
     def forward(self, x):
+        
         out, (h_n, c_n) = self.lstm(x)  # out: tensor of shape (batch_size, seq_length, hidden_size)   
+        
         return h_n, c_n
  </code>
  
