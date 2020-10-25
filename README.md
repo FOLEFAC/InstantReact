@@ -12,23 +12,23 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusau
 <p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong>Overview</strong></em></a>
 
 <ul>
-<li><p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong>Video Captioning</strong></em></a>
+<li><p><em><strong>Video Captioning</strong></em>
 </li>
 </ul>
 
 <ul>
-<li><p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong> Sound Recognition </strong></em></a>
+<li><p><em><strong> Sound Recognition </strong></em>
 </li>
 </ul>
 
 
 <ul>
-<li><p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong> Package Documentation </strong></em></a>
+<li><p><em><strong> Package Documentation </strong></em>
 </li>
 </ul>
 
 <ul>
-<li><p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong> Demo </strong></em></a>
+<li><p><em><strong> Demo </strong></em>
 </li>
 </ul>
 
@@ -56,28 +56,13 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusau
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/generaloverview.jpg"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/generaloverview.jpg" style="max-width:100%;"></a>
 </p>
 
-<p>A box is a box. A <em>bounding</em> box is a box that wraps around an object i.e. represents its bounds.</p>
-<p>In this tutorial, we will encounter both types – just boxes and bounding boxes. But all boxes are represented on images and we need to be able to measure their positions, shapes, sizes, and other properties.</p>
-<h4><a id="user-content-boundary-coordinates" class="anchor" aria-hidden="true" href="#boundary-coordinates"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Boundary coordinates</h4>
-<p>The most obvious way to represent a box is by the pixel coordinates of the <code>x</code> and <code>y</code> lines that constitute its boundaries.</p>
-<p><a target="_blank" rel="noopener noreferrer" href="/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection/blob/master/img/bc1.PNG"><img src="/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection/raw/master/img/bc1.PNG" alt="" style="max-width:100%;"></a></p>
-<p>The boundary coordinates of a box are simply <strong><code>(x_min, y_min, x_max, y_max)</code></strong>.</p>
-<p>But pixel values are next to useless if we don't know the actual dimensions of the image.
-A better way would be to represent all coordinates is in their <em>fractional</em> form.</p>
-<p><a target="_blank" rel="noopener noreferrer" href="/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection/blob/master/img/bc2.PNG"><img src="/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection/raw/master/img/bc2.PNG" alt="" style="max-width:100%;"></a></p>
-<p>Now the coordinates are size-invariant and all boxes across all images are measured on the same scale.</p>
-<h4><a id="user-content-center-size-coordinates" class="anchor" aria-hidden="true" href="#center-size-coordinates"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Center-Size coordinates</h4>
-<p>This is a more explicit way of representing a box's position and dimensions.</p>
-<p><a target="_blank" rel="noopener noreferrer" href="/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection/blob/master/img/cs.PNG"><img src="/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection/raw/master/img/cs.PNG" alt="" style="max-width:100%;"></a></p>
-<p>The center-size coordinates of a box are <strong><code>(c_x, c_y, w, h)</code></strong>.</p>
-<p>In the code, you will find that we routinely use both coordinate systems depending upon their suitability for the task, and <em>always</em> in their fractional forms.</p>
-<h4><a id="user-content-jaccard-index" class="anchor" aria-hidden="true" href="#jaccard-index"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Jaccard Index</h4>
-<p>The Jaccard Index or Jaccard Overlap or Intersection-over-Union (IoU) measure the <strong>degree or extent to which two boxes overlap</strong>.</p>
-<p><a target="_blank" rel="noopener noreferrer" href="/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection/blob/master/img/jaccard.jpg"><img src="/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection/raw/master/img/jaccard.jpg" alt="" style="max-width:100%;"></a></p>
-<p>An IoU of <code>1</code> implies they are the <em>same</em> box, while a value of <code>0</code> indicates they're mutually exclusive spaces.</p>
-<p>It's a simple metric, but also one that finds many applications in our model.</p>
-<h3><a id="user-content-multibox" class="anchor" aria-hidden="true" href="#multibox"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Multibox</h3>
-<p>Multibox is a technique for detecting objects where a prediction consists of two components –</p>
+<p>From the figure above, we see that a video file can be broken down into several frames. A frame can be considered as a single image or a single capture from the video at a given point in time. Video files can be broken down into the <strong>frames (images)</strong> and <strong>sound</strong>.
+ </p>
+ <p>
+ In our case, we use the Popular Computer vision library <strong>OpenCV</strong>to break down the video file into frames and the <strong>Moviepy</strong> package to extract the sound from the video. Once the frames are extracted, We use a Deeplearning model (Seq2Seq LSTM) to extract actions made by the different entities present in the selected frames. PyTorch library helps us train this model and do inference very easily (we shall see subsequently in detail how this is done). 
+ </p>
+ <p>
+ We also use Wit.ai powerful speech recognition module to extract speech from the sound. In the next subsections, we shall go in more detail to understand how <strong> PyTorch and Wit.ai</strong> help us solve our problem and also how <strong> Docusaurus</strong> helps document our solution, so that other developers can use our product in other more interesting and important applications.
 <ul>
 <li>
 <p><strong>Coordinates of a box that may or may not contain an object</strong>. This is a <em>regression</em> task.</p>
