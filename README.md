@@ -104,7 +104,6 @@ Deep learning algorithms are best suited for solving such problems, since they c
  <p>
  
  <code>
- class Encoder_LSTM(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers):
         super(Encoder_LSTM, self).__init__()
         self.hidden_size = hidden_size
@@ -114,6 +113,7 @@ Deep learning algorithms are best suited for solving such problems, since they c
         out, (h_n, c_n) = self.lstm(x)  # out: tensor of shape (batch_size, seq_length, hidden_size)   
         return h_n, c_n
  </code>
+ 
  </p>
  
  
