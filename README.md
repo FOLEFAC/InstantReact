@@ -1,6 +1,6 @@
 # InstantReact
 This repo contains code for the <b>InstantReact</b> project. This project helps people and organizations with <b>CCTV cameras</b> take quick decisions automatically depending on what the Camera sees.
-In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, do a demo app using <b>ONNX.js</b> and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
+In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, signal in case of necessity to security or any person who may be of help and  do a demo app using <b>ONNX.js</b> and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
 
 <p>Basic knowledge of PyTorch, convolutional Neural Networks, Recurrent Neural Networks and Long Short Term Memories is assumed.</p>
 <p>If you're new to PyTorch, first read <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" rel="nofollow">Deep Learning with PyTorch: A 60 Minute Blitz</a> and <a href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html" rel="nofollow">Learning PyTorch with Examples</a>.</p>
@@ -43,7 +43,9 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusau
 <h1><a id="user-content-objective" class="anchor" aria-hidden="true" href="#objective"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Objective</h1>
 <p><strong>Build a system, which can extract useful information from a video like actions and sounds.</strong> <br> This will for example permit security agents be more efficient as the computer can be trained to automatically see what is contained in the video, and alert them so that they can take quick and instant measures. 
  <br>Also we shall see how to build a package and quickly document it so that other developers can make use of it with ease. Then finally we shall see how to deploy these models in production using ONNX and how to do a demo app in ReactJs.
+ 
  <br>  Hopefully after going through this tutorial, you shall learn how to use the InstantReact Package and also how to create and document yours :)</p>
+ <p> <strong> It is worth noting that this project can be used in many other environments apart from security. Imagine a patient who is being monitored, so that in case of a fall, he/she can be rescued very quickly</strong>. So don't limit yourself feel free to use these technologies to solve real world problems you encounter</p>
 <p align="center">
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif" style="max-width:100%;"></a>
 </p>
@@ -59,13 +61,19 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusau
 <p>From the figure above, we see that a video file can be broken down into several frames. A frame can be considered as a single image or a single capture from the video at a given point in time. Video files can be broken down into the <strong>frames (images)</strong> and <strong>sound</strong>.
  </p>
  <p>
- In our case, we use the Popular Computer vision library <strong>OpenCV</strong> to break down the video file into frames and the <strong>Moviepy</strong> package to extract the sound from the video. Once the frames are extracted, We use a Deeplearning model (Seq2Seq LSTM) to extract actions made by the different entities present in the selected frames. PyTorch library helps us train this model and do inference very easily (we shall see subsequently in detail how this is done). 
+ In our case, we use the Popular Computer vision library <strong>OpenCV</strong>to break down the video file into frames and the <strong>Moviepy</strong> package to extract the sound from the video. Once the frames are extracted, We use a Deeplearning model (Seq2Seq LSTM) to extract actions made by the different entities present in the selected frames. PyTorch library helps us train this model and do inference very easily (we shall see subsequently in detail how this is done). 
  </p>
  <p>
  We also use Wit.ai powerful speech recognition module to extract speech from the sound. In the next subsections, we shall go in more detail to understand how <strong> PyTorch and Wit.ai</strong> help us solve our problem and also how <strong> Docusaurus</strong> helps document our solution, so that other developers can use our product in other more interesting and important applications.
-
-
-<h3><a id="user-content-single-shot-detector-ssd" class="anchor" aria-hidden="true" href="#single-shot-detector-ssd"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Video Captioning </h3>
+<ul>
+<li>
+<p><strong>Coordinates of a box that may or may not contain an object</strong>. This is a <em>regression</em> task.</p>
+</li>
+<li>
+<p><strong>Scores for various object types for this box</strong>, including a <em>background</em> class which implies there is no object in the box. This is a <em>classification</em> task.</p>
+</li>
+</ul>
+<h3><a id="user-content-single-shot-detector-ssd" class="anchor" aria-hidden="true" href="#single-shot-detector-ssd"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Single Shot Detector (SSD)</h3>
 <p>The SSD is a purely convolutional neural network (CNN) that we can organize into three parts –</p>
 <ul>
 <li>
