@@ -6,18 +6,16 @@ In this project, we shall use <b>Facebook's Pytorch, WIT.ai, ReactJs and Docusau
 <p>If you're new to PyTorch, first read <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" rel="nofollow">Deep Learning with PyTorch: A 60 Minute Blitz</a> and <a href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html" rel="nofollow">Learning PyTorch with Examples</a>.</p>
 <p>Questions, suggestions, or corrections can be posted as issues.</p>
 <p>I'm using <code>PyTorch 1.6.0</code> in <code>Python 3.7.4</code>.</p>
-<hr>
-<p><strong>27 Jan 2020</strong>: Working code for two new tutorials has been added — <a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Super-Resolution">Super-Resolution</a> and <a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Machine-Translation">Machine Translation</a></p>
-<hr>
+
 <h1><a id="user-content-contents" class="anchor" aria-hidden="true" href="#contents"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h1>
-<p><a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#objective"><em><strong>Objective</strong></em></a></p>
-<p><a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#concepts"><em><strong>Concepts</strong></em></a></p>
-<p><a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#overview"><em><strong>Overview</strong></em></a></p>
-<p><a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#implementation"><em><strong>Implementation</strong></em></a></p>
-<p><a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#training"><em><strong>Training</strong></em></a></p>
-<p><a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#evaluation"><em><strong>Evaluation</strong></em></a></p>
-<p><a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#inference"><em><strong>Inference</strong></em></a></p>
-<p><a href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#faqs"><em><strong>Frequently Asked Questions</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#objective"><em><strong>Objective</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#concepts"><em><strong>Concepts</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#overview"><em><strong>Overview</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#implementation"><em><strong>Implementation</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#training"><em><strong>Training</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#evaluation"><em><strong>Evaluation</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#inference"><em><strong>Inference</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#faqs"><em><strong>Frequently Asked Questions</strong></em></a></p>
 <h1><a id="user-content-objective" class="anchor" aria-hidden="true" href="#objective"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Objective</h1>
 <p><strong>To build a model that can detect and localize specific objects in images.</strong></p>
 <p align="center">
