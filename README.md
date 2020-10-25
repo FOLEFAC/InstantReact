@@ -1,6 +1,6 @@
 # InstantReact
 This repo contains code for the <b>InstantReact</b> project. This project helps people and organizations with <b>CCTV cameras</b> take quick decisions automatically depending on what the Camera sees.
-In this project, we shall use <b>Facebook's Pytorch, WIT.ai, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, do a demo app using <b>ONNX.js</b> and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
+In this project, we shall use <b>Facebook's PyTorch, Wit.ai, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, do a demo app using <b>ONNX.js</b> and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
 
 <p>Basic knowledge of PyTorch, convolutional Neural Networks, Recurrent Neural Networks and Long Short Term Memories is assumed.</p>
 <p>If you're new to PyTorch, first read <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" rel="nofollow">Deep Learning with PyTorch: A 60 Minute Blitz</a> and <a href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html" rel="nofollow">Learning PyTorch with Examples</a>.</p>
@@ -17,7 +17,8 @@ In this project, we shall use <b>Facebook's Pytorch, WIT.ai, ReactJs and Docusau
 <p><a href="https://github.com/FOLEFAC/InstantReact#inference"><em><strong>Inference</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#faqs"><em><strong>Frequently Asked Questions</strong></em></a></p>
 <h1><a id="user-content-objective" class="anchor" aria-hidden="true" href="#objective"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Objective</h1>
-<p><strong>To build a model that can detect and localize specific objects in images.</strong></p>
+<p><strong>To build a system, which can extract useful information from a video like actions and sounds. This will permit security agents be more efficient as the computer can be trained to automatically see what is contained in the video, and alert them so that they can take quick and instant measures. Also we shall see how to build a package and quickly document it so that other developers can make use of it with ease. Then finally we shall see how to deploy these models in production using ONNX and how to do a small demo app in ReactJs.
+ <br>  Hopefully after going through this tutorial, you shall learn how to use the InstantReact Package and also how to create yours :).</strong></p>
 <p align="center">
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif" style="max-width:100%;"></a>
 </p>
