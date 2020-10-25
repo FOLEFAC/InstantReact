@@ -78,7 +78,7 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 <p> The diagram above describes a video captioning pipeline <strong>(from extraction of frames in the video to textual description of actions in the video). </strong> </p>
 Deep learning algorithms are best suited for solving such problems, since they can help understand image data and also understand patterns existing between the different frames which are present in a video over a given period of time.
 <p> To extract the information from the frames (image data), we make use of a Convolutional neural network (CNN), while to understand different actions and generate text over time we use a Recurrent Neural Network (RNN).</p>
-<p> Infact, we are using a variant or a more sophisticated CNN, which is the <strong> VGG16</strong>, and a more sophisticated RNN, called LSTMs. These are not the most advanced models, as other advanced models and algorithms exist which can be used to better learn from a given dataset (Videos and their captions). Before explaining what is going on in the schematic above, it is important to understand our data first and know the problem we want to solve.
+<p> Infact, we are using a variant or a more sophisticated CNN, which is the <strong> VGG16</strong>, and a more sophisticated RNN, called LSTMs. These are not the most advanced models, as other advanced models and algorithms exist which can be used to better learn from a given dataset (Videos and their captions). Before explaining what is going on in the schematic above, it is important to understand our data first.<code> a_1 = 7; </code>
 </p>
 
 
