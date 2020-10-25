@@ -21,6 +21,11 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 </li>
 </ul>
 
+<ul>
+<li><p><em><strong> Alert Message</strong></em>
+</li>
+</ul>
+
 
 <ul>
 <li><p><em><strong> Package Documentation </strong></em>
