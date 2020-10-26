@@ -17,6 +17,11 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 </ul>
 
 <ul>
+<li><p><em><strong> Package Documentation </strong></em>
+</li>
+</ul>
+
+<ul>
 <li><p><em><strong> Sound Recognition </strong></em>
 </li>
 </ul>
@@ -27,10 +32,7 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 </ul>
 
 
-<ul>
-<li><p><em><strong> Package Documentation </strong></em>
-</li>
-</ul>
+
 
 <ul>
 <li><p><em><strong> Demo </strong></em>
@@ -42,7 +44,6 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 </p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#implementation"><em><strong>Implementation</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#training"><em><strong>Training</strong></em></a></p>
-<p><a href="https://github.com/FOLEFAC/InstantReact#evaluation"><em><strong>Evaluation</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#inference"><em><strong>Inference</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#faqs"><em><strong>Frequently Asked Questions</strong></em></a></p>
 <h1><a id="user-content-objective" class="anchor" aria-hidden="true" href="#objective"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Objective</h1>
@@ -492,3 +493,10 @@ Taking the first row, we should note that the video  with videoId: <code>mv89psg
             torch.save(model.state_dict(), 'model_lstm_best_loss.pth')
         print("The loss for this epoch is = :", epoch_loss/lent(train_dl))
  </code>
+<p>
+<h1> <strong>DATASET</strong>
+ <hr>
+ <p>
+ <stron>Note<strong>: This tutorial is meant to help you use your own custom dataset in solving a more precise problem (e.g. patient surveillance,...) and the dataset we used isn't directly linked to people fighting, but contains day to day actions instead.
+  </p>
+ </p>
