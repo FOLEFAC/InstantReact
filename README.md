@@ -133,63 +133,53 @@ Deep learning algorithms are best suited for solving such problems, since they c
  <p>After understanding the concepts between the Video captioning module, we start with the implementation code. </p>
  
 <p> We start by importing necessary packages and libraries</p>
-<code>
- 
- #####Imports
-</code>
+
 <code>
 import torch
+from torchvision import datasets, models, transforms
+import torch.nn as nn 
 
-from torchvision import datasets, models, transforms # All torchvision modules
+import torch.optim as optim 
 
-import torch.nn as nn  # All neural network modules, nn.Linear, nn.Conv2d, Loss functions,..
+import torch.nn.functional as F 
 
-import torch.optim as optim  # For all Optimization algorithms, SGD, Adam,...
+from torch.utils.data import (DataLoader,Dataset)
 
-import torch.nn.functional as F  # All functions that don't have any parameters
+import torchvision.datasets as datasets 
 
-from torch.utils.data import (DataLoader,Dataset)  # Gives easier dataset managment and creates mini batches
+import torchvision.transforms as transforms
 
-import torchvision.datasets as datasets  # Has standard datasets we can import in a nice way
-
-import torchvision.transforms as transforms  # Transformations we can perform on our dataset
-
-import torchtext # Makes it easy to work with sequence data 
+import torchtext 
 
 from torchtext.data import get_tokenizer
 
-import re # regex library
+import re
 
-import os # Doing operating system operations
+import os
 
-import cv2 # Computer vision tasks with OpenCV
+import cv2
 
-import numpy as np # Powerful arrray computation library
+import numpy as np 
 
-from PIL import Image # WOrking with image files
+from PIL import Image
 
-import pandas # Extracting data from csv
+import pandas
 
-import math # Math package
+import math 
 
-import pickle # Saving variables for later usage.
+import pickle 
 
-from torchsummary import summary # Make understanding of models easier
+from torchsummary import summary
 
-import torch # PyTorch library
+import torch
 
-from time import time # Using timer in code
-</code>
-<code>
-
-# Set device
-</code>
-<code>
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # Use Cuda if GPU available!
+from time import time
 
  </code>
  
- 
+<code>
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu") 
+</code> 
 
 
  
