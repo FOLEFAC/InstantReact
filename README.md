@@ -136,7 +136,8 @@ Deep learning algorithms are best suited for solving such problems, since they c
 <code>
  
  #####Imports
-
+</code>
+<code>
 import torch
 
 from torchvision import datasets, models, transforms # All torchvision modules
@@ -178,10 +179,12 @@ from torchsummary import summary # Make understanding of models easier
 import torch # PyTorch library
 
 from time import time # Using timer in code
-
+</code>
+<code>
 
 # Set device
-
+</code>
+<code>
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # Use Cuda if GPU available!
 
  </code>
