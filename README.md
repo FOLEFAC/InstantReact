@@ -52,7 +52,7 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
  <br>  After going through this tutorial, you shall learn how to use the InstantReact Package and also how to create and document yours :)</p>
  <p> <strong> It is worth noting that this project can be used in many other environments apart from security. Imagine a patient who is being monitored, so that in case of a fall, he/she can be rescued very quickly</strong>. So don't limit yourself feel free to use these technologies to solve real world problems you encounter</p>
 <p align="center">
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/fighting.gif" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/images/fighting.gif"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/images/fighting.gif" style="max-width:100%;"></a>
 </p>
 <hr>
 
@@ -60,7 +60,7 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 
 
 <p align="center">
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/generaloverview.jpg"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/generaloverview.jpg" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/images/generaloverview.jpg"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/images/generaloverview.jpg" style="max-width:100%;"></a>
 </p>
 
 <p>From the figure above, we see that a video file can be broken down into several frames. A frame can be considered as a single image or a single capture from the video at a given point in time. Video files can be broken down into the <strong>frames (images)</strong> and <strong>sound</strong>.
@@ -75,7 +75,7 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 <h3><a id="user-content-single-shot-detector-ssd" class="anchor" aria-hidden="true" href="#single-shot-detector-ssd"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Video Captioning </h3>
 
 <p align="center">
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/videocaptioning.jpg"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/videocaptioning.jpg" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/images/videocaptioning.jpg"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/images/videocaptioning.jpg" style="max-width:100%;"></a>
 </p>
 
 
@@ -219,11 +219,10 @@ Deep learning algorithms are best suited for solving such problems, since they c
                                          +++++  LSTM SEQ2SEQ again, we shall use PyTorch modules to easily create this class (from scratch, unlike the VGG PRETRAINED MODEL)
              It should be noted that one can rewrite a class for a pretrained model (but for our problem, that wasn't necessary)
 
-        --------  Key parameter definition: Here parameters like the learning rate,number of epochs, ... are defined 
-
-        --------  Optimizer definition
-        --------  Training
-        --------  Testing
+            --------  Key parameter definition: Here parameters like the learning rate,number of epochs, ... are defined 
+            --------  Optimizer definition
+            --------  Training
+            --------  Testing
 
  </code>
  <p> In order to convert the video file into an N number of frames, we have the following function
@@ -263,20 +262,13 @@ Deep learning algorithms are best suited for solving such problems, since they c
 
                        cv2_im = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB) # read the image using OpenCV library
                        frame = Image.fromarray(cv2_im)
-
                        frame = transform(frame) # Use transform to process the image before inference
-
                        frame = frame.to(device) # set frame to be inferred using the set device
                        model = model.to(device) # set model to infer using the set device
-
                        model.eval() # put model in evaluation mode
-
                        frame_feature = model(frame[None])
-
                        frame_feature = torch.squeeze(frame_feature,0)
-
                        total_features[t] = frame_feature
-
 
                    t+=1
                current_frame+=1
@@ -285,6 +277,46 @@ Deep learning algorithms are best suited for solving such problems, since they c
            cv2.destroyAllWindows()
 
            return total_features
+ </code>
+ Let's see how to process the text giving to us. First we see the formatting of the video text corpus data:
+ <p align="center">
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/FOLEFAC/InstantReact/blob/main/images/text_file.PNG"><img src="https://github.com/FOLEFAC/InstantReact/blob/main/images/text_file.PNG" style="max-width:100%;"></a>
+</p>
+Taking the first row, we should note that the video  with videoId: <code>mv89psg6zh4</code>will come as <code>mv89psg6zh4_33_46.avi</code>, so we simply have to remove the 33 and 46 which correspond to start and end. Thats what the function below does. You can see the code for the get_video_id function in the notebook file.
+<strong>Pandas</strong> library is used to extract the information from csv file.
+<code>
+
+
+             def output_text(self, train_corpus, video = None):
+
+                    '''
+                    Purpose: Generate all text present in video using the csv file which contains all the text in the videos
+                    Input(s):
+                        train_corpus: The file path to the csv file
+                        video: A video file whose text is to be generated
+                    Outputs(s):
+                        Final description: the text representing a video caption
+
+                    '''
+
+                    df = pandas.read_csv(train_corpus)
+                    if (video):
+                        video_id,start,end = self.get_video_id(video) # 
+
+                        final_description=''
+                        for i in range(len(df)):
+
+                            if df['VideoID'][i]==str(video_id) and df['Start'][i]==int(start) and df['End'][i]==int(end) and df['Language'][i]=='English':
+
+                                final_description=df['Description'][i]
+                    else:
+
+                        final_description = []
+                        for i in range(len(df)):
+                            if (df['Language'][i]=='English'):
+                                final_description.append(df['Description'][i])
+                    return final_description
+
  </code>
 
  
