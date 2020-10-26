@@ -43,6 +43,8 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 </ul>
 </p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#implementation"><em><strong>Implementation</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#dataset"><em><strong>Dataset</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#requirements"><em><strong>Requirements</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#training"><em><strong>Training</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#inference"><em><strong>Inference</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#faqs"><em><strong>Frequently Asked Questions</strong></em></a></p>
@@ -494,14 +496,111 @@ Taking the first row, we should note that the video  with videoId: <code>mv89psg
         print("The loss for this epoch is = :", epoch_loss/lent(train_dl))
  </code>
 <p>
-<h1> <strong>DATASET</strong>
- <hr>
+<h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#dataset"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dataset</h1>
+
  <p>
  <strong>Note</strong>: This tutorial is meant to help you use your own custom dataset in solving a more precise problem (e.g. patient surveillance,...) and the dataset we used isn't directly linked to people fighting, but contains day to day actions instead.
   </p>
  </p>
  <p>
- - Video data: http://www.cs.utexas.edu/users/ml/clamp/videoDescription/YouTubeClips.tar (It contains .avi files)
- - Text data: video_corpus.csv file in this repo
+ <ul>
+  
+ <li> Video data: http://www.cs.utexas.edu/users/ml/clamp/videoDescription/YouTubeClips.tar (It contains .avi files)</li>
+ <li>Text data: video_corpus.csv file in this repo </li>
+  </ul>
  
  </p>
+ </p>
+ 
+ <p>
+<h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#requirements"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Requirements</h1>
+
+
+ </p>
+ <p>
+ <ul>
+  
+ <li> Pandas</li>
+ <li> OpenCV</li>
+ 
+ <li> PyTorch</li>
+ <li> Torchtext</li>
+ <li> Numpy</li>
+ <li> Re</li>
+ <li> Pickle</li>
+ 
+  </ul>
+ </p>
+ 
+ <p>
+<h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#training"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Training</h1>
+
+ <p>
+ <strong>Note</strong>: This tutorial is meant to help you use your own custom dataset in solving a more precise problem (e.g. patient surveillance,...) and the dataset we used isn't directly linked to people fighting, but contains day to day actions instead.
+  </p>
+ 
+ <p>
+Training:
+ <code>
+            
+        --NUMBER_OF_FRAMES', type=int, default=40
+        --LEARNING_RATE', type=float, default=1e-3
+        --BATCH_SIZE', type=int, default=1
+        --EPOCH', type=int, default=10
+        --TRAINING_DEVICE', type=str, default='cuda'
+        --VOCAB_SIZE', type=int, default=200
+        --NUMBER_OF_WORDS', type=int, default=10
+        --HIDDEN_SIZE', type=int, default=300
+        --INPUT_SIZE', type=int, default=4096 
+        --NUMBER_OF_LAYERS', type=int, default=1 
+        --train_dir', type=str
+        --train_corpus', type=str
+        --load_weights', type=str
+
+ </code>
+ 
+ <strong>Example of usage:</strong>
+ <code> 
+ 
+     python train.py --NUMBER_OF_WORDS 32 --train_dir D:/Machine_Learning/datasets/YouTubeClips_2/YouTubeClips/ --train_corpus  D:/Machine_Learning/datasets/video_corpus/video_corpus.csv --load_weights model_lstm_2.pth
+
+ </code>
+ 
+ </p>
+ 
+ <p>
+<h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#inference"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Inference</h1>
+
+ <p>
+ Inference:
+ <code>
+  
+
+            --NUMBER_OF_FRAMES', type=int, default=40
+            --LEARNING_RATE', type=float, default=1e-3
+            --BATCH_SIZE', type=int, default=1
+            --EPOCH', type=int, default=10
+            --TRAINING_DEVICE', type=str, default='cuda'
+            --VOCAB_SIZE', type=int, default=200
+            --NUMBER_OF_WORDS', type=int, default=10
+            --HIDDEN_SIZE', type=int, default=300
+            --INPUT_SIZE', type=int, default=4096 
+            --NUMBER_OF_LAYERS', type=int, default=1 
+            --video_file', type=str
+            --train_corpus', type=str
+            --load_weights', type=str
+
+ </code>
+ <strong>Example of usage:</strong>
+ <code>
+ 
+       python test.py --HIDDEN_SIZE 300 --video_file D:/Machine_Learning/datasets/YouTubeClips_2/YouTubeClips/_O9kWD8nuRU_45_49.avi --load_weights model_lstm_best_loss.pth --train_corpus D:/Machine_Learning/datasets/video_corpus/video_corpus.csv
+
+ </code>
+ 
+ 
+ </p>
+ 
+ 
+ 
+ 
