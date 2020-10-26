@@ -109,6 +109,7 @@ Deep learning algorithms are best suited for solving such problems, since they c
  <p>
  
  <code>
+ 
     def __init__(self, input_size, hidden_size, num_layers):
  
         super(Encoder_LSTM, self).__init__()
