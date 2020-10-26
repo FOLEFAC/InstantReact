@@ -207,5 +207,84 @@ Deep learning algorithms are best suited for solving such problems, since they c
       device = torch.device("cuda" if torch.cuda.is_available() else "cpu") 
  </code>
 
+<p> Before beginning with explaining each class or function, lets agree on a <strong> code structure</strong> </p>
+<code>
+
+            -------- Helper Classes
+                               ++++ Utils class ( Which uses torchtext and other packages to treat images, videos and text)
+                               ++++ TextProcessor class (which uses torchtext to treat text)
+            --------  Custom Dataset class: PyTorch offers this possibility of creating and processing our custom datasets with much ease
+            --------  Model definition classes: 
+                                         +++++  VGG16 pretrained model will be used, although a slight modification will be made
+                                         +++++  LSTM SEQ2SEQ again, we shall use PyTorch modules to easily create this class (from scratch, unlike the VGG PRETRAINED MODEL)
+             It should be noted that one can rewrite a class for a pretrained model (but for our problem, that wasn't necessary)
+
+        --------  Key parameter definition: Here parameters like the learning rate,number of epochs, ... are defined 
+
+        --------  Optimizer definition
+        --------  Training
+        --------  Testing
+
+ </code>
+ <p> In order to convert the video file into an N number of frames, we have the following function
+ <code>
+
+       def video_to_frames(self, video_path,frame_number, device, INPUT_SIZE , model, transform):
+
+           '''
+           Purpose: Take a video file and produce coded frames out of it
+           Input(s):
+               video_path: The video file to be processed
+               frame_number: The number of frames we want to extract (In our example, it is 40)
+               device: The device on which the inference will be done
+               INPUT_SIZE: The dimension of the output array of each frame
+               model: The CNN Model used for inference
+               transform: The transform object, which will process all images before they are passed to the model
+           Outputs(s):
+               The coded frames of dimension frame_number X  INPUT_SIZE (Ex: 40 X 2850)
+
+           '''
+           print(video_path)
+           cap=cv2.VideoCapture(video_path) # read the video file
+           number_of_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT) # get the number of frames
+           get_filter=int(number_of_frames/frame_number) # obtain the factor of video number of frames to the number of frames
+           print("when we getfilter = :", get_filter)
+           #we want to extract, so that There is equal spacing between the frames which make up the videos 
+
+           current_frame=0
+           total_features = torch.zeros([frame_number, INPUT_SIZE]) # initialize the total_features 
+           total_features.to(dtype = torch.float16)
+           t=0
+           while (current_frame<number_of_frames):
+               ret,frame = cap.read()
+
+               if ((current_frame%get_filter) == 0 and t<frame_number):
+                   with torch.no_grad(): 
+
+                       cv2_im = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB) # read the image using OpenCV library
+                       frame = Image.fromarray(cv2_im)
+
+                       frame = transform(frame) # Use transform to process the image before inference
+
+                       frame = frame.to(device) # set frame to be inferred using the set device
+                       model = model.to(device) # set model to infer using the set device
+
+                       model.eval() # put model in evaluation mode
+
+                       frame_feature = model(frame[None])
+
+                       frame_feature = torch.squeeze(frame_feature,0)
+
+                       total_features[t] = frame_feature
+
+
+                   t+=1
+               current_frame+=1
+
+           cap.release()
+           cv2.destroyAllWindows()
+
+           return total_features
+ </code>
 
  
