@@ -223,7 +223,7 @@ Deep learning algorithms are best suited for solving such problems, since they c
 </p>
 Taking the first row, we should note that the video  with videoId: <code>mv89psg6zh4</code>will come as <code>mv89psg6zh4_33_46.avi</code>, so we simply have to remove the 33 and 46 which correspond to start and end. Also we are only working in the English language, and thats why in the code we only select rows which have English as language. Thats what the function below does. You can see the code for the get_video_id function in the notebook file.
 <strong>Pandas</strong> library is used to extract the information from csv file.
-<p><strong> Take note that you can simply modify this csv file and input your own data, then use it to train the model to solve your specific problem <strong></p>
+<p><strong> Take note that you can simply modify this csv file and input your own data, then use it to train the model to solve your specific problem </strong></p>
 <code>
 
 
