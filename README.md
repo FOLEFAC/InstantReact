@@ -375,6 +375,10 @@ Taking the first row, we should note that the video  with videoId: <code>mv89psg
        ])
        train_dir = 'D:/Machine_Learning/datasets/YouTubeClips_2/YouTubeClips/'
        train_corpus = 'D:/Machine_Learning/datasets/video_corpus/video_corpus.csv'
+
+       ### optimizer and loss function
+       optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+       criterion = nn.CrossEntropyLoss()
        
 </code>
 
@@ -428,3 +432,63 @@ Taking the first row, we should note that the video  with videoId: <code>mv89psg
 </code>
  
  
+ <p> Finally we train and test our models</p>
+ <code>
+     #### Model Training
+
+    EPOCH = 10
+    import time
+    print_feq = 100
+    best_loss = np.inf
+    for epoch in range(1, EPOCH+1):
+        model.train()
+        epoch_loss = 0
+
+        for step, (img,label) in enumerate(train_dl):
+
+
+            time_1 = time.time() ## timing
+
+            X_1, X_2 = img ### get inputs
+
+            X_1 = X_1.to(device) # Set device 
+            X_2 = X_2.to(device) # Set device
+
+
+            label = label.to(device) # Set output device
+
+            ### zero the parameter gradients
+            optimizer.zero_grad()
+
+            ### forward
+            prediction = model(X_1, X_2)
+
+            ### Optimize
+            prediction = prediction.to(device)
+            prediction = torch.squeeze(prediction,0)
+            label = torch.squeeze(label,0)
+
+            new_label = torch.zeros([label.shape[0]])
+            for l in range(label.shape[0]):
+                new_label[l] = np.argmax(label[l].cpu())
+            new_label = new_label.to(device)
+            loss = criterion(prediction, new_label.long())
+
+            # Backward prop.
+            loss.backward()
+            optimizer.step()
+
+            ### print out statistics
+            epoch_loss += loss.item()
+            if step % print_feq == 0:
+                print('epoch:', epoch,
+                      '\tstep:', step+1, '/', len(train_dl) + 1,
+                      '\ttrain loss:', '{:.4f}'.format(loss.item()),
+                      '\ttime:', '{:.4f}'.format((time.time()-time_1)*print_feq), 's')
+            torch.save(model.state_dict(), 'model_lstm_2.pth')
+        ### save best model
+        if(epoch_loss < best_loss):
+            best_loss = epoch_loss
+            torch.save(model.state_dict(), 'model_lstm_best_loss.pth')
+        print("The loss for this epoch is = :", epoch_loss/lent(train_dl))
+ </code>
