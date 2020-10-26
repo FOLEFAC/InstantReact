@@ -584,6 +584,7 @@ To document our project, so that other developers can make use of our project to
  </p>
  <p>
  To install Docusaurus, you can follow this tutorial: https://docusaurus.io/docs/en/installation.
+ To deploy Docusaurus, you can follow this tutorial: https://v2.docusaurus.io/docs/deployment/
  
  </p>
  
