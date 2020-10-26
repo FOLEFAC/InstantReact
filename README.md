@@ -134,34 +134,54 @@ Deep learning algorithms are best suited for solving such problems, since they c
  
 <p> We start by importing necessary packages and libraries</p>
 <code>
- # Imports
+ 
+ #####Imports
 
 import torch
+
 from torchvision import datasets, models, transforms # All torchvision modules
+
 import torch.nn as nn  # All neural network modules, nn.Linear, nn.Conv2d, Loss functions,..
+
 import torch.optim as optim  # For all Optimization algorithms, SGD, Adam,...
+
 import torch.nn.functional as F  # All functions that don't have any parameters
+
 from torch.utils.data import (DataLoader,Dataset)  # Gives easier dataset managment and creates mini batches
+
 import torchvision.datasets as datasets  # Has standard datasets we can import in a nice way
+
 import torchvision.transforms as transforms  # Transformations we can perform on our dataset
+
 import torchtext # Makes it easy to work with sequence data 
+
 from torchtext.data import get_tokenizer
 
 import re # regex library
+
 import os # Doing operating system operations
+
 import cv2 # Computer vision tasks with OpenCV
+
 import numpy as np # Powerful arrray computation library
+
 from PIL import Image # WOrking with image files
+
 import pandas # Extracting data from csv
+
 import math # Math package
+
 import pickle # Saving variables for later usage.
 
 from torchsummary import summary # Make understanding of models easier
+
 import torch # PyTorch library
+
 from time import time # Using timer in code
 
 
 # Set device
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # Use Cuda if GPU available!
 
  </code>
