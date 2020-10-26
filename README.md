@@ -580,6 +580,10 @@ Training:
 <p>
 To document our project, so that other developers can make use of our project to develop very cool applications, we shall use <strong> Docusaurus </strong>. It is pretty easy to use and helps a great deal in reducing effort needed to document our Open Source projects; while maintaining a certain standard.
  </p>
+ <p>
+ To install Docusaurus, you can follow this tutorial: https://docusaurus.io/docs/en/installation.
+ 
+ </p>
  
  
  
