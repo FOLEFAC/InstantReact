@@ -582,13 +582,20 @@ Training:
   
   It is done it two main steps: first conversion of the video to audio, which can be done with a library like <strong>Moviepy</strong>
   Then next doing a simple API call:
+ 
+    
   <code>
-      
-      curl -XPOST 'https://api.wit.ai/speech' \
-           -i -L \
-           -H "Authorization: Bearer $TOKEN" \ ######### which you get by login to wit.ai and going to settings
-           -H "Content-Type: audio/wav" \
-           --data-binary "@sample.wav"
+ 
+         Definition
+          POST https://api.wit.ai/speech
+
+             Example request
+          $ curl -XPOST 'https://api.wit.ai/speech?v=20200513' \
+            -i -L \
+            -H "Authorization: Bearer $TOKEN" \ #### which you get when you login to wit.ai and go to settings
+            -H "Content-Type: audio/wav" \
+            --data-binary "@sample.wav"
+
  </code>
  <code>
  
