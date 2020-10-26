@@ -15,6 +15,7 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai and Docusaurus</b> t
 <p><a href="https://github.com/FOLEFAC/InstantReact#requirements"><em><strong>Requirements</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#training"><em><strong>Training</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#inference"><em><strong>Inference</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#sound"><em><strong>Sound Recognition</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#documentation"><em><strong>Documentation</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#next"><em><strong>Next step</strong></em></a></p>
 <h1><a id="user-content-objective" class="anchor" aria-hidden="true" href="#objective"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Objective</h1>
@@ -576,6 +577,38 @@ Training:
  
  
  
+  
+ <h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#sound"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Sound recognition</h1>
+  
+  It is done it two main steps: first conversion of the video to audio, which can be done with a library like <strong>Moviepy</strong>
+  Then next doing a simple API call:
+  <code>
+      
+      curl -XPOST 'https://api.wit.ai/speech' \
+           -i -L \
+           -H "Authorization: Bearer $TOKEN" \ ######### which you get by login to wit.ai and going to settings
+           -H "Content-Type: audio/wav" \
+           --data-binary "@sample.wav"
+ </code>
+ <code>
+ 
+
+       {
+        "msg_id" : ".....",
+        "msg_body" : "People are fighting",
+        "outcome" : {
+          "intent" : "......",
+          "entities" : {
+            "object" : {
+              "value" : "......",
+              "body" : "....."
+            }
+          },
+          "confidence" : ....
+        }
+      }
+
+ </code>
  
  
  <h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#documentation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Documentation</h1>
@@ -584,7 +617,7 @@ To document our project, so that other developers can make use of our project to
  </p>
  <p>
  To install Docusaurus, you can follow this tutorial: https://docusaurus.io/docs/en/installation.
- To deploy Docusaurus, you can follow this tutorial: https://v2.docusaurus.io/docs/deployment/
+ <p>To deploy Docusaurus, you can follow this tutorial: https://v2.docusaurus.io/docs/deployment/</p>
  
  </p>
  
