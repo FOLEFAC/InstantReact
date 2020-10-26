@@ -1,6 +1,6 @@
 # InstantReact
 This repo contains code for the <b>InstantReact</b> project. This project helps people and organizations with <b>CCTV cameras</b> take quick decisions automatically depending on what the Camera sees.
-In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform, ReactJs and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, signal in case of necessity to security or any person who may be of help and  do a demo app using <b>ONNX.js</b> and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
+In this project, we shall use <b>Facebook's PyTorch, Wit.ai and Docusaurus</b> to train and save a deep learning model which does Video Captioning, to extract sound from a video footage, and document a library which we shall develop and which will permit other <b> developers</b> easily use their own data and achieve great results!!!
 
 <p>Basic knowledge of PyTorch, convolutional Neural Networks, Recurrent Neural Networks and Long Short Term Memories is assumed.</p>
 <p>If you're new to PyTorch, first read <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" rel="nofollow">Deep Learning with PyTorch: A 60 Minute Blitz</a> and <a href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html" rel="nofollow">Learning PyTorch with Examples</a>.</p>
@@ -16,10 +16,12 @@ In this project, we shall use <b>Facebook's PyTorch, Wit.ai, Messenger Platform,
 <p><a href="https://github.com/FOLEFAC/InstantReact#training"><em><strong>Training</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#inference"><em><strong>Inference</strong></em></a></p>
 <p><a href="https://github.com/FOLEFAC/InstantReact#documentation"><em><strong>Documentation</strong></em></a></p>
-<p><a href="https://github.com/FOLEFAC/InstantReact#faqs"><em><strong>Frequently Asked Questions</strong></em></a></p>
+<p><a href="https://github.com/FOLEFAC/InstantReact#next"><em><strong>Next step</strong></em></a></p>
 <h1><a id="user-content-objective" class="anchor" aria-hidden="true" href="#objective"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Objective</h1>
 <p><strong>Build a system, which can extract useful information from a video like actions and sounds.</strong> <br> This will for example permit security agents be more efficient as the computer can be trained to automatically see what is contained in the video, and alert them so that they can take quick and instant measures. 
- <br>Also we shall see how to build a package and quickly document it so that other developers can make use of it with ease. Then finally we shall see how to deploy these models in production using ONNX and how to do a demo app in ReactJs.
+ <br>Also we shall see how to build a package and quickly document it so that other developers can make use of it with ease. 
+ 
+ Then finally we shall see how to deploy these models in production using ONNX and how to do a demo app in ReactJs (This will be in the next version of this tutorial)
  
  <br>  After going through this tutorial, you shall learn how to use the InstantReact Package and also how to create and document yours :)</p>
  <p> <strong> It is worth noting that this project can be used in many other environments apart from security. Imagine a patient who is being monitored, so that in case of a fall, he/she can be rescued very quickly</strong>. So don't limit yourself feel free to use these technologies to solve real world problems you encounter</p>
@@ -589,10 +591,28 @@ To document our project, so that other developers can make use of our project to
  
  <p>
  
-<h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#faqs"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Frequently asked questions</h1>
+<h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#next"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a> What's next?</h1>
  </p>
- <p>
-  :) Will be waiting
+ <p><ul>
+ <li>
+  Using more adapted deep learning models to increase accuracy (e.g. attention models,..)
+ </li>
+ 
+ <li>
+  Modifying the parametres to obtain better results
+ </li>
+ <li>
+ Setting up project with Messenger Platform to allow automatic Messages sent via messenger to a security agent.
+ </li>
+ <li>
+ Producing the weights in the ONNX format and then developing a ReactJs app using ONNX.js
+</li>
+ <li>
+Deploying the Documentation on github pages
+</li>
+ 
+ 
+ </ul>
  </p>
  
  
