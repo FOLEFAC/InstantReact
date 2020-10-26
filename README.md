@@ -497,6 +497,11 @@ Taking the first row, we should note that the video  with videoId: <code>mv89psg
 <h1> <strong>DATASET</strong>
  <hr>
  <p>
- <stron>Note<strong>: This tutorial is meant to help you use your own custom dataset in solving a more precise problem (e.g. patient surveillance,...) and the dataset we used isn't directly linked to people fighting, but contains day to day actions instead.
+ <strong>Note</strong>: This tutorial is meant to help you use your own custom dataset in solving a more precise problem (e.g. patient surveillance,...) and the dataset we used isn't directly linked to people fighting, but contains day to day actions instead.
   </p>
+ </p>
+ <p>
+ - Video data: http://www.cs.utexas.edu/users/ml/clamp/videoDescription/YouTubeClips.tar (It contains .avi files)
+ - Text data: video_corpus.csv file in this repo
+ 
  </p>
