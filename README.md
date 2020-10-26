@@ -324,33 +324,33 @@ Taking the first row, we should note that the video  with videoId: <code>mv89psg
  After treating the data, we proceed to creating our dataset. The Dataset class from PyTorch helps us easily create datasets, and also helps us avoid loading all our dataset in memory during training, as we just need to pass in the index as parameter in the __getitem__ function.<strong>(notice how idx is passed)</strong>
  
  <code>
-                  
-                  def __getitem__(self, idx):
 
-                         textprocessor = TextProcessor(VOCAB_SIZE = self.VOCAB_SIZE)
-                         utils = Utils()
+       def __getitem__(self, idx):
 
-
-                         video_file = self.train_dir_list[idx] # get video file corresponding to the id, idx
+              textprocessor = TextProcessor(VOCAB_SIZE = self.VOCAB_SIZE)
+              utils = Utils()
 
 
-                         output_text = self.utils.output_text(self.train_corpus, video_file) # get the text contained in the video file
+              video_file = self.train_dir_list[idx] # get video file corresponding to the id, idx
 
 
-                         #### generate input 2,  from the output_text
-                         sentence_to_index = textprocessor.sentence_to_indices(utils.tagger_input(utils.clean_text(output_text)), self.word_to_index)
-                         X_2 = textprocessor.get_output(sentence_to_index, NUMBER_OF_WORDS)
+              output_text = self.utils.output_text(self.train_corpus, video_file) # get the text contained in the video file
 
-                         #### generate output,  from the output_text
-                         sentence_to_index = textprocessor.sentence_to_indices(utils.tagger_output(utils.clean_text(output_text)), self.word_to_index) 
-                         y = textprocessor.get_output(sentence_to_index, NUMBER_OF_WORDS)
 
-                         video_path = self.train_dir + video_file
+              #### generate input 2,  from the output_text
+              sentence_to_index = textprocessor.sentence_to_indices(utils.tagger_input(utils.clean_text(output_text)), self.word_to_index)
+              X_2 = textprocessor.get_output(sentence_to_index, NUMBER_OF_WORDS)
 
-                         # generate input 1
-                         X_1 = utils.video_to_frames(video_path, self.number_of_frames, self.device, self.INPUT_SIZE, self.model, self.transform)
-                         #X_1 = pre_data[idx] ### this may be used if we collect the pretrained video frames from a pickle file instead of doing inference during training
-                         return (X_1,torch.tensor(X_2)), torch.tensor(y)
+              #### generate output,  from the output_text
+              sentence_to_index = textprocessor.sentence_to_indices(utils.tagger_output(utils.clean_text(output_text)), self.word_to_index) 
+              y = textprocessor.get_output(sentence_to_index, NUMBER_OF_WORDS)
+
+              video_path = self.train_dir + video_file
+
+              # generate input 1
+              X_1 = utils.video_to_frames(video_path, self.number_of_frames, self.device, self.INPUT_SIZE, self.model, self.transform)
+              #X_1 = pre_data[idx] ### this may be used if we collect the pretrained video frames from a pickle file instead of doing inference during training
+              return (X_1,torch.tensor(X_2)), torch.tensor(y)
                          
  </code>
  Next, we define paramters which shall be used in training/inference. We again use PyTorch Transforms to avoid re-writing them. there are more advanced ways of using PyTorch transforms which permit us do more data augmentation
@@ -376,6 +376,55 @@ Taking the first row, we should note that the video  with videoId: <code>mv89psg
        train_dir = 'D:/Machine_Learning/datasets/YouTubeClips_2/YouTubeClips/'
        train_corpus = 'D:/Machine_Learning/datasets/video_corpus/video_corpus.csv'
        
+</code>
+
+<p>We shall define a seq to seq model using 2 Pytorch LSTMs. But its important you understand how to use the nn.LSTM class. See: https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html for more details.
+<strong> When trying to code a Model or develop any module in PyTorch, always refer to the documentation. </strong>For example in the documentation, by default 
+ Inputs take the form <code>sequence_length, batch_size, input_size</code>, and to use the notation <code> batch_size, sequence_length, input_size</code> as in our code, we use the <code>batch_first</code> parametre.</p>
+ Below, we see how we define three separate classes for the seq to seq model.
+ <p><strong> TAKE NOTE OF THE DIMENSIONS!!!</strong></p>
+ <code>
+
+
+       ### Sequence to sequence model
+
+       class Encoder_LSTM(nn.Module):
+           def __init__(self, input_size, hidden_size, num_layers):
+               super(Encoder_LSTM, self).__init__()
+               self.hidden_size = hidden_size
+               self.num_layers = num_layers
+               self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
+
+           def forward(self, x):
+               out, (h_n, c_n) = self.lstm(x)  # out: tensor of shape (batch_size, seq_length, hidden_size)
+
+               return h_n, c_n
+
+       class Decoder_LSTM(nn.Module):
+           def __init__(self, input_size, hidden_size, num_layers, number_of_words):
+               super(Decoder_LSTM, self).__init__()
+               self.hidden_size = hidden_size
+               self.num_layers = num_layers
+               self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
+               self.fc = nn.Linear(hidden_size, input_size)
+           def forward(self, x, h_n, c_n):
+               output, _ = self.lstm(x.float(),(h_n,c_n))  # out: tensor of shape (batch_size, seq_length, hidden_size)
+               output = self.fc(output)                            
+
+               return output
+
+       class Seq2Seq(nn.Module):
+           def __init__(self, encoder, decoder):
+               super(Seq2Seq, self).__init__()
+               self.encoder = encoder
+               self.decoder = decoder
+
+           def forward(self, X_1, X_2):
+               h_n, c_n = self.encoder(X_1)
+               output = self.decoder(X_2, h_n, c_n)
+               return output
+
+
 </code>
  
  
