@@ -105,67 +105,6 @@ Deep learning algorithms are best suited for solving such problems, since they c
  </p>
 <p> The words which form the captions are passed into the model in their <strong> one - hot </strong> notation. So if we have a vocabulary of 2850 words (although not very practical), each words can be transformed into a 1- D array with all zeros and having 1 only at one position which is unique to that number. Some examples were taken in the figure above.
  </p>
- 
- <p>
- 
- <code>
-   
-    
-    import torch
-    from torchvision import datasets, models, transforms
-    import torch.nn as nn 
-    import torch.optim as optim 
-    import torch.nn.functional as F 
-    from torch.utils.data import (DataLoader,Dataset)
-
-    import torchvision.datasets as datasets 
-
-    import torchvision.transforms as transforms
-
-    import torchtext 
-
-    from torchtext.data import get_tokenizer
-
-    import re
-
-    import os
-
-    import cv2
-
-    import numpy as np 
-
-    from PIL import Image
-
-    import pandas
-
-    import math 
-
-    import pickle 
-
-    from torchsummary import summary
-
-    import torch
-
-    from time import time
-
-    def __init__(self, input_size, hidden_size, num_layers):
- 
-        super(Encoder_LSTM, self).__init__()
-        
-        self.hidden_size = hidden_size
-        
-        self.num_layers = num_layers
-        
-        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
-        
-    def forward(self, x):
-        
-        out, (h_n, c_n) = self.lstm(x)  # out: tensor of shape (batch_size, seq_length, hidden_size)   
-        
-        return h_n, c_n
- </code>
- 
- </p>
  <h1><a id="user-content-overview" class="anchor" aria-hidden="true" href="#implementation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Implementation</h1>
  
  <p>After understanding the concepts between the Video captioning module, we start with the implementation code. </p>
@@ -320,4 +259,123 @@ Taking the first row, we should note that the video  with videoId: <code>mv89psg
 
  </code>
 
+<p>Now, we create a vocabulary of words with a given size, while limiting its size depending on the problem we want to solve. torchtext tokenizer helps us in tokenizing sentences very easily. A tokenizer simply takes in a sentence and separates it into words.</p>
+<code>
+ 
+      def vocab_creator(self,sentence_list):
+
+             '''
+             Purpose: From a give corpus, generate a WORD vocabulary which maps a givenn word to a given index
+             Input(s): 
+                 sentence_list: A corpus of all sentences extracted from the videos in the dataset
+             Outputs(s):
+                 word_to_index: the word to index of all words contained in the textual corpus
+
+             '''
+             frequencies = {}
+             idx = 4
+             stoi = {}
+
+             tokenizer = self.get_tokenizer
+             for sentence in sentence_list:
+                 try:
+                     for word in tokenizer(sentence):
+                         if word not in frequencies:
+                             frequencies[word] = 1
+
+                         else:
+                             frequencies[word] += 1
+
+                         if frequencies[word] == self.freq_threshold:
+                             self.word_to_index[word] = idx
+                             idx += 1
+                 except:
+                     pass 
+             return self.word_to_index
+
+ </code>
+ <p> We then use a sentences to indices method to convert a caption e.g. I LIKE FOOTBALL ---> {'I': 23, 'LIKE': 234, 'FOOTBALL': 189}, then using this method, we can easily generate one-hot outputs for each video caption using the code below</p>
+ 
+ <code>
+ 
+      def get_output(self, sentence_to_indices, NUMBER_OF_WORDS):
+
+             '''
+             Purpose: Generate one - hot representation of sentence, ready for model training
+             Input(s): 
+                 sentence_to_indices: A dictionary which contains the words and indices as key, value pairs
+                 NUMBER_OF_WORDS: The maximum number of words a sentence can contain
+             Outputs(s):
+                 One-hot vectors stacked into an array
+
+             '''
+
+             arr = np.zeros((NUMBER_OF_WORDS, self.VOCAB_SIZE))
+             pad_number = 1 # The pad in sentence to index is seen as 1
+             for i in range(len(arr)):
+                 if(i<len(sentence_to_indices)):
+                     arr[i][sentence_to_indices[list(sentence_to_indices.keys())[i]]] = 1 # set a given key to 1, while leaving the others at zero
+                 else:
+                     arr[i][pad_number] = 1 # pad to complete the remaining words to make up the NUMBER OF WORDS needed for the model
+
+             return arr
+</code>
+ 
+ After treating the data, we proceed to creating our dataset. The Dataset class from PyTorch helps us easily create datasets, and also helps us avoid loading all our dataset in memory during training, as we just need to pass in the index as parameter in the __getitem__ function.<strong>(notice how idx is passed)</strong>
+ 
+ <code>
+                  
+                  def __getitem__(self, idx):
+
+                         textprocessor = TextProcessor(VOCAB_SIZE = self.VOCAB_SIZE)
+                         utils = Utils()
+
+
+                         video_file = self.train_dir_list[idx] # get video file corresponding to the id, idx
+
+
+                         output_text = self.utils.output_text(self.train_corpus, video_file) # get the text contained in the video file
+
+
+                         #### generate input 2,  from the output_text
+                         sentence_to_index = textprocessor.sentence_to_indices(utils.tagger_input(utils.clean_text(output_text)), self.word_to_index)
+                         X_2 = textprocessor.get_output(sentence_to_index, NUMBER_OF_WORDS)
+
+                         #### generate output,  from the output_text
+                         sentence_to_index = textprocessor.sentence_to_indices(utils.tagger_output(utils.clean_text(output_text)), self.word_to_index) 
+                         y = textprocessor.get_output(sentence_to_index, NUMBER_OF_WORDS)
+
+                         video_path = self.train_dir + video_file
+
+                         # generate input 1
+                         X_1 = utils.video_to_frames(video_path, self.number_of_frames, self.device, self.INPUT_SIZE, self.model, self.transform)
+                         #X_1 = pre_data[idx] ### this may be used if we collect the pretrained video frames from a pickle file instead of doing inference during training
+                         return (X_1,torch.tensor(X_2)), torch.tensor(y)
+                         
+ </code>
+ Next, we define paramters which shall be used in training/inference. We again use PyTorch Transforms to avoid re-writing them. there are more advanced ways of using PyTorch transforms which permit us do more data augmentation
+ <code>
+        
+        ### parametres
+
+       LEARNING_RATE = 1e-3
+       NUMBER_OF_FRAMES = 40
+       BATCH_SIZE = 1
+       EPOCH = 10
+       TRAINING_DEVICE = 'cuda'
+       VOCAB_SIZE = 200
+       NUMBER_OF_WORDS = 10
+       HIDDEN_SIZE = 300
+       INPUT_SIZE = 4096
+       NUMBER_OF_LAYERS = 1
+       tsfm = transforms.Compose([
+           transforms.Resize([224, 224]),
+           transforms.ToTensor(),
+           transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+       ])
+       train_dir = 'D:/Machine_Learning/datasets/YouTubeClips_2/YouTubeClips/'
+       train_corpus = 'D:/Machine_Learning/datasets/video_corpus/video_corpus.csv'
+       
+</code>
+ 
  
